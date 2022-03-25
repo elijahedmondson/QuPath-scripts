@@ -9,7 +9,7 @@ def dnn = DnnTools.builder(pathModel).build();
 println '1'
 //runPlugin('qupath.imagej.detect.tissue.SimpleTissueDetection2', '{"threshold": 230,  "requestedPixelSizeMicrons": 20.0,  "minAreaMicrons": 1000000.0,  "maxHoleAreaMicrons": 5000.0,  "darkBackground": false,  "smoothImage": true,  "medianCleanup": true,  "dilateBoundaries": false,  "smoothCoordinates": true,  "excludeOnBoundary": false,  "singleAnnotation": true}');
 
-//selectAnnotations();
+selectAnnotations();
 //selectTMACores();
 var stardist = StarDist2D.builder(pathModel)
       .ignoreCellOverlaps(false)   // Set to true if you don't care if cells expand into one another
@@ -52,7 +52,7 @@ Thread.sleep(100)
 //IHC//
 //IHC//
 //setDetectionIntensityClassifications("DAB: Cell: Mean", 0.1, 0.3, 0.5)
-//setDetectionIntensityClassifications("DAB: Nucleus: Mean", 0.1, 0.3, 0.5)
+setDetectionIntensityClassifications("DAB: Nucleus: Mean", 0.4, 0.6, 0.8)
 //setDetectionIntensityClassifications("DAB: Cytoplasm: Mean", 0.1, 0.3, 0.5)
 //setDetectionIntensityClassifications("DAB: Membrane: Mean", 0.1, 0.3, 0.5)
 println '7'
@@ -64,14 +64,14 @@ println '7'
 //RNASCOPE//
 //RNASCOPE//
 //selectAnnotations();
-runPlugin('qupath.imagej.detect.cells.SubcellularDetection', '{"detection[DAB]": 0.3,  "doSmoothing": false,  "splitByIntensity": true,  "splitByShape": false,  "spotSizeMicrons": .2,  "minSpotSizeMicrons": 0.01,  "maxSpotSizeMicrons": 1.5,  "includeClusters": false}');
-setCellIntensityClassifications("Subcellular: DAB: Num spots estimated", 1, 4, 10)
+//runPlugin('qupath.imagej.detect.cells.SubcellularDetection', '{"detection[DAB]": 0.3,  "doSmoothing": false,  "splitByIntensity": true,  "splitByShape": false,  "spotSizeMicrons": .2,  "minSpotSizeMicrons": 0.01,  "maxSpotSizeMicrons": 1.5,  "includeClusters": false}');
+//setCellIntensityClassifications("Subcellular: DAB: Num spots estimated", 1, 4, 10)
 println '8'
 
-Thread.sleep(100)
+//Thread.sleep(100)
 // Try to reclaim whatever memory we can, including emptying the tile cache
-javafx.application.Platform.runLater {
-    getCurrentViewer().getImageRegionStore().cache.clear()
-    System.gc()
-}
-Thread.sleep(100)
+//javafx.application.Platform.runLater {
+//    getCurrentViewer().getImageRegionStore().cache.clear()
+//    System.gc()
+//}
+//Thread.sleep(100)
