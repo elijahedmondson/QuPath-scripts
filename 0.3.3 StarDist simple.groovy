@@ -9,16 +9,16 @@ def dnn = DnnTools.builder(pathModel).build();
 println '1'
 //runPlugin('qupath.imagej.detect.tissue.SimpleTissueDetection2', '{"threshold": 230,  "requestedPixelSizeMicrons": 20.0,  "minAreaMicrons": 1000000.0,  "maxHoleAreaMicrons": 5000.0,  "darkBackground": false,  "smoothImage": true,  "medianCleanup": true,  "dilateBoundaries": false,  "smoothCoordinates": true,  "excludeOnBoundary": false,  "singleAnnotation": true}');
 
-selectAnnotations();
+//selectAnnotations();
 //selectTMACores();
 var stardist = StarDist2D.builder(pathModel)
       .ignoreCellOverlaps(false)   // Set to true if you don't care if cells expand into one another
-      .threshold(0.5)              // Prediction threshold
-      .normalizePercentiles(2, 99) // Percentile normalization
-      //.pixelSize(0)              // Resolution for detection
+      .threshold(0.05)              // Prediction threshold
+      .normalizePercentiles(1, 99) // Percentile normalization
+      .pixelSize(0.5)              // Resolution for detection
       //.includeProbability(true)    // Include prediction probability as measurement
-      .cellExpansion(15.0)          // Approximate cells based upon nucleus expansion
-      .cellConstrainScale(4)       // Constrain cell expansion using nucleus size
+      .cellExpansion(5.0)          // Approximate cells based upon nucleus expansion
+      //.cellConstrainScale(4)       // Constrain cell expansion using nucleus size
       .measureShape()              // Add shape measurements
       .measureIntensity()          // Add cell measurements (in all compartments)
       .doLog()                     // Use this to log a bit more information while running the script
