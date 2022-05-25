@@ -1,18 +1,20 @@
 
 //setChannelNames('DAPI', 'GFP','CD45R')
 import qupath.ext.stardist.StarDist2D
+import groovy.time.*
 
-// Specify the model file (you will need to change this!)
 println '1'
+
+
 //selectAnnotations();
-//selectTMACores();
+selectTMACores();
 var pathModel = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
 def dnn = DnnTools.builder(pathModel).build();
 var stardist = StarDist2D.builder(pathModel)
         .threshold(0.5)              // Probability (detection) threshold
         .channels('DAPI')            // Specify detection channel
         .normalizePercentiles(1, 99) // Percentile normalization
-        .pixelSize(0.7)              // Resolution for detection
+        //.pixelSize(0.7)              // Resolution for detection
         .cellExpansion(10.0)          // Approximate cells based upon nucleus expansion
         .cellConstrainScale(3)     // Constrain cell expansion using nucleus size
         .measureShape()              // Add shape measurements
