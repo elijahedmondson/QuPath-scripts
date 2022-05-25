@@ -4,7 +4,8 @@ import qupath.ext.stardist.StarDist2D
 
 // Specify the model file (you will need to change this!)
 println '1'
-selectAnnotations();
+//selectAnnotations();
+//selectTMACores();
 var pathModel = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
 def dnn = DnnTools.builder(pathModel).build();
 var stardist = StarDist2D.builder(pathModel)
