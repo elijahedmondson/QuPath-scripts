@@ -1,0 +1,35 @@
+import groovy.io.FileType
+import java.awt.image.BufferedImage
+import qupath.lib.images.servers.ImageServerProvider
+import qupath.lib.gui.commands.ProjectCommands
+
+images_path = "F:/Qupath/"
+images_dir = new File(images_path)
+
+project_dir = new File(images_path + File.separator + "QPProject")
+
+if (!project_dir.exists()) {
+    project_dir.mkdirs()
+}
+
+def project = Projects.createProject(project_dir, BufferedImage.class)
+
+def files = []
+
+images_dir.eachFileRecurse (FileType.FILES) {file ->
+    if (file.getName().toLowerCase().endsWith(".ndpi")) {
+        files << file
+        println("Added: " + file.getCanonicalPath())
+    }
+}
+
+for (file in files) {
+    def imagePath = file.getCanonicalPath()
+
+    def support = ImageServerProvider.getPreferredUriImageSupport(BufferedImage.class, imagePath, "")
+    println(support)
+    //def builder = support.builders.get(0)
+
+}
+
+//project.syncChanges()
