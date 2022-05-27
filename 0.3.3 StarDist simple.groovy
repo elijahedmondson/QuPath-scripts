@@ -15,7 +15,7 @@ println '1'
 //selectTMACores();
 var stardist = StarDist2D.builder(pathModel)
       .ignoreCellOverlaps(false)   // Set to true if you don't care if cells expand into one another
-      .threshold(0.05)              // Prediction threshold
+      .threshold(0.5)              // Prediction threshold
       .normalizePercentiles(1, 99) // Percentile normalization
       .pixelSize(0.5)              // Resolution for detection
       //.includeProbability(true)    // Include prediction probability as measurement
