@@ -12,7 +12,7 @@ println '1'
 //runPlugin('qupath.imagej.detect.tissue.SimpleTissueDetection2', '{"threshold": 230,  "requestedPixelSizeMicrons": 20.0,  "minAreaMicrons": 1000000.0,  "maxHoleAreaMicrons": 5000.0,  "darkBackground": false,  "smoothImage": true,  "medianCleanup": true,  "dilateBoundaries": false,  "smoothCoordinates": true,  "excludeOnBoundary": false,  "singleAnnotation": true}');
 
 //selectAnnotations();
-//selectTMACores();
+selectTMACores();
 var stardist = StarDist2D.builder(pathModel)
       .ignoreCellOverlaps(false)   // Set to true if you don't care if cells expand into one another
       .threshold(0.5)              // Prediction threshold
@@ -54,7 +54,7 @@ Thread.sleep(100)
 //IHC//
 //IHC//
 //setDetectionIntensityClassifications("DAB: Cell: Mean", 0.1, 0.3, 0.5)
-setDetectionIntensityClassifications("DAB: Nucleus: Mean", 0.4, 0.6, 0.8)
+setDetectionIntensityClassifications("DAB: Nucleus: Mean", 0.3, 0.5, 0.7)
 //setDetectionIntensityClassifications("DAB: Cytoplasm: Mean", 0.1, 0.3, 0.5)
 //setDetectionIntensityClassifications("DAB: Membrane: Mean", 0.1, 0.3, 0.5)
 println '7'

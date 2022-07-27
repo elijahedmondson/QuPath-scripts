@@ -7,7 +7,7 @@ println '1'
 
 
 //selectAnnotations();
-selectTMACores();
+//selectTMACores();
 var pathModel = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
 def dnn = DnnTools.builder(pathModel).build();
 var stardist = StarDist2D.builder(pathModel)
