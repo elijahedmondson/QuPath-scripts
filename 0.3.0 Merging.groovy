@@ -1,2 +1,5 @@
-selectObjects {it.isAnnotation() && it.getPathClass() == null};
-mergeSelectedAnnotations()
+//selectObjects {it.isAnnotation() && it.getPathClass() == null};
+//selectAnnotations();
+mergeSelectedAnnotations();
+
+

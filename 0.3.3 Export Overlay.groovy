@@ -24,7 +24,7 @@ import static qupath.lib.gui.scripting.QPEx.*
 double downsample = 20
 
 // Add the output file path here
-String pathImage = buildFilePath(PROJECT_BASE_DIR, 'export', getProjectEntry().getImageName() + '.png')
+String pathImage = buildFilePath(PROJECT_BASE_DIR, 'export', getProjectEntry().getImageName() + '-a.png')
 
 print '01. pathImage = ' + (pathImage)
 
