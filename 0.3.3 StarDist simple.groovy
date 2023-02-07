@@ -11,8 +11,8 @@ def dnn = DnnTools.builder(pathModel).build();
 println '1'
 //runPlugin('qupath.imagej.detect.tissue.SimpleTissueDetection2', '{"threshold": 230,  "requestedPixelSizeMicrons": 20.0,  "minAreaMicrons": 1000000.0,  "maxHoleAreaMicrons": 5000.0,  "darkBackground": false,  "smoothImage": true,  "medianCleanup": true,  "dilateBoundaries": false,  "smoothCoordinates": true,  "excludeOnBoundary": false,  "singleAnnotation": true}');
 
-selectAnnotations();
-//selectTMACores();
+//selectAnnotations();
+selectTMACores();
 var stardist = StarDist2D.builder(pathModel)
       .ignoreCellOverlaps(false)   // Set to true if you don't care if cells expand into one another
       .threshold(0.05)              // Prediction threshold

@@ -13,7 +13,7 @@ def imageData = getCurrentImageData()
 def outputDir = buildFilePath(PROJECT_BASE_DIR, 'export')
 mkdirs(outputDir)
 def name = GeneralTools.getNameWithoutExtension(imageData.getServer().getMetadata().getName())
-def path = buildFilePath(outputDir, name + ".png")
+def path = buildFilePath(outputDir, name + "-he.png")
 def pathMask = buildFilePath(outputDir, name + "-mask.png")
 
 // Define how much to downsample during export (may be required for large images)
@@ -30,7 +30,7 @@ def labelServer = new LabeledImageServer.Builder(imageData)
   .backgroundLabel(255, ColorTools.WHITE) // Specify background label (usually 0 or 255)
   .downsample(downsample)    // Choose server resolution; this should match the resolution at which tiles are exported
   .addLabel('Lung', 1)      // Choose output labels (the order matters!)
-  .addLabel('Metastasis', 2)
+  .addLabel('Tumor', 2)
   .multichannelOutput(false) // If true, each label refers to the channel of a multichannel binary image (required for multiclass probability)
   .build()
 

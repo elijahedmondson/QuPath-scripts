@@ -21,7 +21,7 @@ import static qupath.lib.gui.scripting.QPEx.*
 
 // It is important to define the downsample!
 // This is required to determine annotation line thicknesses
-double downsample = 20
+double downsample = 50
 
 // Add the output file path here
 String pathImage = buildFilePath(PROJECT_BASE_DIR, 'export', getProjectEntry().getImageName() + '-a.png')
