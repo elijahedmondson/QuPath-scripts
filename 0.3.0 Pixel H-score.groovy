@@ -1,8 +1,8 @@
 //SET THESE
-DABthresholds=[0.15,0.5,1] //1+, 2+, 3+ DAB
+DABthresholds=[0.3,0.7,1.3] //1+, 2+, 3+ DAB
 Hthreshold=0.08 //Nuclei in Hematoxylin
-double scale = 1 //bigger = downsample for speed 
-def annotClass="Region*" //what class are your annotations?
+double scale = 4 //bigger = downsample for speed 
+def annotClass="Tumor*" //what class are your annotations?
 
 //make pixel_classifiers folder
 String pixelClassifierFolder=buildFilePath(PROJECT_BASE_DIR,'classifiers','pixel_classifiers') //project subfolder with pixel classifier
@@ -62,6 +62,7 @@ Path writepath=Path.of(pixelClassifierFolder,'HDAB.json')
 PixelClassifiers.writeClassifier(pixclass,writepath)
 
 selectObjectsByClassification(annotClass);
+//selectAnnotations();
 addPixelClassifierMeasurements("HDAB", "HDAB") //measure H-DAB class
 
 def annots=getAnnotationObjects().findAll{it.getPathClass()==getPathClass(annotClass)} //get objects to measure
