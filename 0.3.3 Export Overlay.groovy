@@ -70,4 +70,13 @@ if (pathMask != null) {
 } else
     IJTools.convertToImagePlus(serverMask, RegionRequest.createInstance(serverMask)).getImage().show()
     
- print '05. Done Done Done Done Done Done'   
+ print '05. Done'  
+ 
+ 
+ Thread.sleep(100)
+// Try to reclaim whatever memory we can, including emptying the tile cache
+javafx.application.Platform.runLater {
+    getCurrentViewer().getImageRegionStore().cache.clear()
+    System.gc()
+}
+Thread.sleep(100)

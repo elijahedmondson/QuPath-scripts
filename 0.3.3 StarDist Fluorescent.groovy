@@ -1,37 +1,52 @@
+/**
+ * This script provides a general template for cell detection using StarDist in QuPath.
+ * This example assumes you have fluorescence image, which has a channel called 'DAPI' 
+ * showing nuclei.
+ * 
+ * If you use this in published work, please remember to cite *both*:
+ *  - the original StarDist paper (https://doi.org/10.48550/arXiv.1806.03535)
+ *  - the original QuPath paper (https://doi.org/10.1038/s41598-017-17204-5)
+ *  
+ * There are lots of options to customize the detection - this script shows some 
+ * of the main ones. Check out other scripts and the QuPath docs for more info.
+ */
 
-//setChannelNames('DAPI', 'GFP','CD45R')
 import qupath.ext.stardist.StarDist2D
-import groovy.time.*
+import qupath.lib.gui.dialogs.Dialogs
+import qupath.lib.scripting.QP
 
-println '1'
+// IMPORTANT! Replace this with the path to your StarDist model
+// that takes a single channel as input (e.g. dsb2018_heavy_augment.pb)
+// You can find some at https://github.com/qupath/models
+// (Check credit & reuse info before downloading)
+def modelPath = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
 
-
-//selectAnnotations();
-//selectTMACores();
-var pathModel = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
-def dnn = DnnTools.builder(pathModel).build();
-var stardist = StarDist2D.builder(pathModel)
-        .threshold(0.5)              // Probability (detection) threshold
-        .channels('DAPI')            // Specify detection channel
-        .normalizePercentiles(1, 99) // Percentile normalization
-        //.pixelSize(0.7)              // Resolution for detection
-        .cellExpansion(10.0)          // Approximate cells based upon nucleus expansion
-        .cellConstrainScale(3)     // Constrain cell expansion using nucleus size
-        .measureShape()              // Add shape measurements
-        .measureIntensity()          // Add cell measurements (in all compartments)
-        .includeProbability(true)    // Include prediction probability as measurement
-        .build()
+// Customize how the StarDist detection should be applied
+// Here some reasonable default options are specified
+def stardist = StarDist2D
+    .builder(modelPath)
+    .channels('DAPI')            // Extract channel called 'DAPI'
+    .normalizePercentiles(1, 99) // Percentile normalization
+    .threshold(0.5)              // Probability (detection) threshold
+    .pixelSize(0.5)              // Resolution for detection
+    .cellExpansion(5)            // Expand nuclei to approximate cell boundaries
+    .measureShape()              // Add shape measurements
+    .measureIntensity()          // Add cell measurements (in all compartments)
+    .build()
+	
+// Define which objects will be used as the 'parents' for detection
+// Use QP.getAnnotationObjects() if you want to use all annotations, rather than selected objects
+def pathObjects = QP.getSelectedObjects()
 
 // Run detection for the selected objects
-var imageData = getCurrentImageData()
-var pathObjects = getSelectedObjects()
+def imageData = QP.getCurrentImageData()
 if (pathObjects.isEmpty()) {
-    Dialogs.showErrorMessage("StarDist", "Please select a parent object!")
+    QP.getLogger().error("No parent objects are selected!")
     return
 }
 stardist.detectObjects(imageData, pathObjects)
-println 'Done!'
-
+stardist.close() // This can help clean up & regain memory
+println('Done!')
 
 //runObjectClassifier("GFP.CD45R")
 setDetectionIntensityClassifications("Cy7: Cell: Max", 9000, 11000, 13000)

@@ -1,7 +1,7 @@
 
 selectObjects {it.isAnnotation() && it.getPathClass() == null};
 mergeSelectedAnnotations()
-resultingClass = getPathClass("Metastasis")
+resultingClass = getPathClass("Lung")
 toChange = getAnnotationObjects().findAll{it.getPathClass() == null}
 toChange.each{ it.setPathClass(resultingClass)}
 
