@@ -53,8 +53,8 @@ Thread.sleep(100)
 //IHC//
 //IHC//
 //IHC//
-//setDetectionIntensityClassifications("DAB: Cell: Mean", 0.1, 0.3, 0.5)
-setDetectionIntensityClassifications("DAB: Nucleus: Mean", 0.2, 0.4, 0.6)
+setDetectionIntensityClassifications("DAB: Cell: Mean", 0.1, 0.3, 0.5)
+//setDetectionIntensityClassifications("DAB: Nucleus: Mean", 0.2, 0.4, 0.6)
 //setDetectionIntensityClassifications("DAB: Cytoplasm: Mean", 0.1, 0.3, 0.5)
 //setDetectionIntensityClassifications("DAB: Membrane: Mean", 0.1, 0.3, 0.5)
 println '7'
