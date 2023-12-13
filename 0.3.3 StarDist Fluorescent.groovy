@@ -26,8 +26,8 @@ def modelPath = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
 def stardist = StarDist2D
     .builder(modelPath)
     .channels('DAPI')            // Extract channel called 'DAPI'
-    .normalizePercentiles(1, 99) // Percentile normalization
-    .threshold(0.5)              // Probability (detection) threshold
+    .normalizePercentiles(1, 98) // Percentile normalization
+    .threshold(0.4)              // Probability (detection) threshold
     .pixelSize(0.5)              // Resolution for detection
     .cellExpansion(5)            // Expand nuclei to approximate cell boundaries
     .measureShape()              // Add shape measurements
@@ -49,4 +49,4 @@ stardist.close() // This can help clean up & regain memory
 println('Done!')
 
 //runObjectClassifier("GFP.CD45R")
-setDetectionIntensityClassifications("Cy7: Cell: Max", 9000, 11000, 13000)
+//setDetectionIntensityClassifications("Cy7: Cell: Max", 9000, 11000, 13000)
