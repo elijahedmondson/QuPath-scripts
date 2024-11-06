@@ -23,6 +23,7 @@ def modelPath = 'F:/QuPath/Stardist/dsb2018_heavy_augment.pb'
 
 // Customize how the StarDist detection should be applied
 // Here some reasonable default options are specified
+selectAnnotations();
 def stardist = StarDist2D
     .builder(modelPath)
     .channels('DAPI')            // Extract channel called 'DAPI'
@@ -48,5 +49,3 @@ stardist.detectObjects(imageData, pathObjects)
 stardist.close() // This can help clean up & regain memory
 println('Done!')
 
-//runObjectClassifier("GFP.CD45R")
-//setDetectionIntensityClassifications("Cy7: Cell: Max", 9000, 11000, 13000)
